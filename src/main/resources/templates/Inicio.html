@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="LayoutPadrao">
+<head>
+<meta charset="UTF-8">
+<title>Casa de Show</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<section layout:fragment="conteudo principal">
+
+
+
+<div class="card text-center">
+<div class="text-center ttinicio" >
+    <h1> Bem Vindo Usuário</h1>
+</div>
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Show do Iron Maiden</h5>
+    <p class="card-text">Preço do Ingresso: R$300,00</p>
+    <p class="card-text">Data: 13/07/2020</p>
+    <p class="card-text">Local: Allianz Arena</p>
+    <p class="card-text">Ingressos Restantes:20000</p>
+    <a href="#" class="btn btn-primary">Comprar</a>
+  </div>
+</div> 
+
+<div class="card text-center">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Show do Gustavo Lima</h5>
+    <p class="card-text">Preço do Ingresso: R$150,00</p>
+    <p class="card-text">Data: 20/04/2020</p>
+    <p class="card-text">Local: Allianz Arena </p>
+    <p class="card-text">Ingressos Restantes:20000</p>
+    <a href="#" class="btn btn-primary">Comprar</a>
+  </div>
+</div> 
+</section>
+</html>

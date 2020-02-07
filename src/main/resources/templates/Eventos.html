@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="LayoutPadrao">
+<head>
+<meta charset="UTF-8">
+<title>Eventos</title>
+<link rel="stylesheet" th:ref="/css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<section layout:fragment="conteudo principal">
+<form class="form-horizontal" >
+	
+		
+		<div class="card">
+			<div class="card-header">
+		       <div class="clearfix">
+			      <h1 class="card-title aw-titulo-card">Eventos</h1>
+	           </div>  
+			</div>
+			<div class="card-body">
+			  <input type="hidden">
+			
+				<label for="Evento" class="col-md-2 col-form-label">Evento</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="Evento" >
+				</div>
+			
+			
+				<label for="Capacidade" class="col-md-2 col-form-label">Capacidade</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="Capacidade"  />
+				</div>
+			
+	
+				  <label  for="Data" class="col-sm-2 control-label" >Data</label>
+				   <div class="col-md-2"  >
+					<input type="text" class="form-control" id="Data"  />
+				   </div>
+				   
+				    <label  for="valor" class="col-sm-2 control-label" >Valor do Ingresso</label>
+				   <div class="col-md-2"  >
+					<input type="text" class="form-control" id="Valor"  />
+				   </div>
+				   
+			<label for="status" class="col-md-1"></label>
+				<div class="col-md-1">
+					<select class="form-control" name="status">
+						<option value="1">Allianz Arena</option>
+					</select>
+				</div>
+				
+			<label for="status" class="col-md-1"></label>
+				<div class="col-md-1">
+					<select class="form-control" name="status">
+						<option value="1">Rock</option>
+					</select>
+				</div>
+				  
+				
+				<div class="col-md-offset-2  col-md-10">
+					<button type="submit" class="btn btn-primary" style="margin-top:14px;">Enviar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class="card-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center">id</th>
+						<th>Nome</th>
+						<th class="text-center">Capacidade</th>
+						<th class="text-center">Preço do Ingresso</th>
+						<th class="text-center">Casa de Show</th>
+						<th class="text-center">Editar</th>
+						<th class="text-center">Deletar</th>
+					</tr>
+				</thead>
+				<thead>
+				
+				     <tr>
+				       <td class="text-center">#</td>
+				       <td ></td>
+				       <td class="text-center"></td>
+				       <td class="text-right"></td>
+				       <td class="text-center">
+				        <span class="badge"></span>
+				       </td>
+				         <td class="text-center">
+				         </td>
+				         <td></td>
+				     </tr>
+	          </thead>
+			</table>			 
+	 </div>
+	
+</section>
+</html>
