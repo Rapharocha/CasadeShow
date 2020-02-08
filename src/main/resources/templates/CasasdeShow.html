@@ -5,12 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Casas de Show</title>
-<link rel="stylesheet" th:ref="/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <section layout:fragment="conteudo principal">
 
-<form method="POST" action="/casasdeshow">
+<form method="POST" action="/casasdeshow" th:object="${cadastrocasa}">
+   <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+       <span>Casa de Show cadastrada com sucesso</span>
+   </div>  
+   <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+      <div th:each="detailedError : ${#fields.detailedErrors()}">
+         <span th:text="${detailedError.message}"></span>  
+      </div> 
+   </div> 
 		<div class="card">
 			<div class="card-header">
 		       <div class="clearfix">
@@ -22,13 +30,15 @@
 			
 				<label for="casasdeshow" class="col-md-2 col-form-label">Casa de Show</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="nome" name="nome" >
+					<input type="text" class="form-control" id="nome" name="nome" 
+					  th:classappend="${#fields.hasErrors('nome')} ? is-invalid">
 				</div>
 			
 			
 				  <label  for="endereco" class="col-sm-2 control-label" >Endereço</label>
 				   <div class="col-md-2"  >
-					<input type="text" class="form-control" id="endereco" name="endereco"/>
+					<input type="text" class="form-control" id="endereco" name="endereco"
+					       th:classappend="${#fields.hasErrors('endereco')} ? is-invalid">
 				   </div>
 		 
 				
@@ -43,7 +53,7 @@
 				<thead>
 					<tr>
 						<th class="text-center">id</th>
-						<th>Nome</th>
+						<th class="text-center">Nome</th>
 						<th class="text-center">Endereço</th>
 						<th class="text-center">Editar</th>
 						<th class="text-center">Deletar</th>
@@ -51,14 +61,17 @@
 				</thead>
 				<thead>
 				
-				     <tr>
+				     <tr th:each="cadastro : ${cadastro}">
+				       <td class="text-center" th:text="${cadastro.codigo}"></td>
+				       <td class="text-center" th:text="${cadastro.nome}"></td>
+				       <td class="text-center" th:text="${cadastro.endereco}"></td>
 				       <td class="text-center"></td>
-				       <td ></td>
-				       <td class="text-center"></td>
-				       <td class="text-right"></td>
 				       <td class="text-center">
 				        <span class="badge"></span>
 				       </td>
+				     </tr>
+				     <tr>
+				        <td colspan="5" th:if="${#lists.isEmpty(cadastro)}">Nenhuma Casa de Show foi Cadastrada</td>
 				     </tr>
 	          </thead>
 			</table>			 

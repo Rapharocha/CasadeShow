@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 
 @Entity
 public class Cadastrocasa {
@@ -37,10 +40,16 @@ public class Cadastrocasa {
 			return false;
 		return true;
 	}
+	
+	@NotEmpty(message = "O campo *Casa de Show* não pode estar vazio")
+	@Size(max = 50, message = "O campo *Casa de Show* não pode conter mais que 50 caracteres")
+	@Size(min = 3, message = "O campo *Casa de Show* deve conter no minímo 3 caracteres")
 	private String nome;
 	
 	
-	
+	@NotEmpty(message = "O campo *Endereço* não pode estar vazio")
+	@Size(max = 50, message = "O campo *Endereço* não pode conter mais que 60 caracteres")
+	@Size(min = 8, message = "O campo *Endereço* deve conter no minímo 8 caracteres")
 	private String endereco;
 	
 	public Long getCodigo() {
