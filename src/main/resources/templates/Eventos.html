@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <section layout:fragment="conteudo principal">
-<form class="form-horizontal" >
+<form class="form-horizontal" method="POST" action="/eventos">
 	
 		
 		<div class="card">
@@ -21,26 +21,26 @@
 			<div class="card-body">
 			  <input type="hidden">
 			
-				<label for="Evento" class="col-md-2 col-form-label">Evento</label>
+				<label for="nomeevento" class="col-md-2 col-form-label">Evento</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="Evento" >
+					<input type="text" class="form-control" id="nomeevento" name="nomeevento" >
 				</div>
 			
 			
-				<label for="Capacidade" class="col-md-2 col-form-label">Capacidade</label>
+				<label for="capacidade" class="col-md-2 col-form-label">Capacidade</label>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="Capacidade"  />
+					<input type="text" class="form-control" id="capacidade" name="capacidade" />
 				</div>
 			
 	
-				  <label  for="Data" class="col-sm-2 control-label" >Data</label>
+				  <label  for="dataevento" class="col-sm-2 control-label" >Data</label>
 				   <div class="col-md-2"  >
-					<input type="text" class="form-control" id="Data"  />
+					<input type="text" class="form-control" id="dataevento" name="dataevento" />
 				   </div>
 				   
 				    <label  for="valor" class="col-sm-2 control-label" >Valor do Ingresso</label>
 				   <div class="col-md-2"  >
-					<input type="text" class="form-control" id="Valor"  />
+					<input type="text" class="form-control" id="valor" name="valor" />
 				   </div>
 				   
 			<label for="status" class="col-md-1"></label>
@@ -69,7 +69,7 @@
 				<thead>
 					<tr>
 						<th class="text-center">id</th>
-						<th>Nome</th>
+						<th class="text-center">Nome</th>
 						<th class="text-center">Capacidade</th>
 						<th class="text-center">Preço do Ingresso</th>
 						<th class="text-center">Casa de Show</th>
@@ -80,16 +80,16 @@
 				<thead>
 				
 				     <tr>
-				       <td class="text-center">#</td>
-				       <td ></td>
+				       <td class="text-center"></td>
+				       <td class="text-center"></td>
 				       <td class="text-center"></td>
 				       <td class="text-right"></td>
-				       <td class="text-center">
-				        <span class="badge"></span>
-				       </td>
-				         <td class="text-center">
-				         </td>
-				         <td></td>
+				       <td class="text-center"></td>
+				        <td class="text-center"></td>
+				        <td class="text-center"></td>
+				     </tr>
+				     <tr>
+				        <td colspan="7" th:if="${#lists.isEmpty(cadastro)}">Nenhum Evento foi cadastrado</td>
 				     </tr>
 	          </thead>
 			</table>			 

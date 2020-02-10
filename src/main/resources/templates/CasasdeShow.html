@@ -11,6 +11,7 @@
 <section layout:fragment="conteudo principal">
 
 <form method="POST" action="/casasdeshow" th:object="${cadastrocasa}">
+
    <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
        <span>Casa de Show cadastrada com sucesso</span>
    </div>  
@@ -26,18 +27,18 @@
 	           </div>  
 			</div>
 			<div class="card-body">
-			  <input type="hidden">
+			  <input type="hidden" th:field="*{codigo}">
 			
 				<label for="casasdeshow" class="col-md-2 col-form-label">Casa de Show</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="nome" name="nome" 
+					<input type="text" class="form-control" id="nome" th:field="*{nome}" 
 					  th:classappend="${#fields.hasErrors('nome')} ? is-invalid">
 				</div>
 			
 			
 				  <label  for="endereco" class="col-sm-2 control-label" >Endereço</label>
 				   <div class="col-md-2"  >
-					<input type="text" class="form-control" id="endereco" name="endereco"
+					<input type="text" class="form-control" id="endereco" th:field="*{endereco}"
 					       th:classappend="${#fields.hasErrors('endereco')} ? is-invalid">
 				   </div>
 		 
@@ -65,10 +66,9 @@
 				       <td class="text-center" th:text="${cadastro.codigo}"></td>
 				       <td class="text-center" th:text="${cadastro.nome}"></td>
 				       <td class="text-center" th:text="${cadastro.endereco}"></td>
-				       <td class="text-center"></td>
-				       <td class="text-center">
-				        <span class="badge"></span>
-				       </td>
+				       <td class="text-center"><a class="btn btn-link aw-link-card" th:href="@{/casasdeshow/{codigo}(codigo=${cadastro.codigo})}">Editar</a></td>
+				       <td class="text-center"><a class="btn btn-link aw-link-card" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+				            th:attr="data-codigo=${cadastro.codigo}">Excluir</a></td>
 				     </tr>
 				     <tr>
 				        <td colspan="5" th:if="${#lists.isEmpty(cadastro)}">Nenhuma Casa de Show foi Cadastrada</td>
@@ -76,5 +76,8 @@
 	          </thead>
 			</table>			 
 	 </div>
+	 
+	 <div layout:insert="ConfirmacaoExclusao"></div>
+	 
 </section>
 </html>

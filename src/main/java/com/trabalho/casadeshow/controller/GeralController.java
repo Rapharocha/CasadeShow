@@ -20,13 +20,7 @@ public class GeralController {
 	 
 	 return "Inicio";
   } 
-
- 
- @RequestMapping(method = RequestMethod.GET, path ="/eventos")
- public String eventos() {
-	 return "Eventos";
- }
- 
+  
  @RequestMapping(method = RequestMethod.GET, path ="/historico")
  public String historico() {
 	 return "Historico";
