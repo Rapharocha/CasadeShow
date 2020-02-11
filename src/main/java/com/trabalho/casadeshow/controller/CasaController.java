@@ -55,7 +55,7 @@ public class CasaController {
 	 }
 	 
 	 @RequestMapping("{codigo}")
-	 public ModelAndView editar(@PathVariable("codigo") Cadastrocasa cadastro) {
+      public ModelAndView editar(@PathVariable("codigo") Cadastrocasa cadastro) {
 		 
 
 		ModelAndView mv = new ModelAndView("CasasdeShow");

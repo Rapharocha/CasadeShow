@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 public class Cadastroevento {
@@ -17,8 +22,6 @@ public class Cadastroevento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,17 +46,23 @@ public class Cadastroevento {
 		return true;
 	}
 	
-	private String nomeevento;
-	
+	private String nomeevento;	
 	private int capacidade;
 	
-	private Cadastrocasa casashow;
+	@ManyToOne
+	@JoinColumn(name = "cadastrocasa_codigo", nullable=false)
+    private Cadastrocasa cadastrocasa;
 	
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataevento;
 	
+	@NumberFormat(pattern = "#,###.00")
 	private BigDecimal valor;
 	
+	
+	//(Métodos Getters e Setters)
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -85,6 +94,12 @@ public class Cadastroevento {
 	}
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+	public Cadastrocasa getCadastrocasa() {
+		return cadastrocasa;
+	}
+	public void setCadastrocasa(Cadastrocasa cadastrocasa) {
+		this.cadastrocasa = cadastrocasa;
 	}
 	
 	

@@ -1,9 +1,13 @@
 package com.trabalho.casadeshow.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -52,6 +56,10 @@ public class Cadastrocasa {
 	@Size(min = 8, message = "O campo *Endereço* deve conter no minímo 8 caracteres")
 	private String endereco;
 	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="cadastrocasa", orphanRemoval=true)
+	private List<Cadastroevento> cadastroevento;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -69,6 +77,12 @@ public class Cadastrocasa {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	public List<Cadastroevento> getCadastroevento() {
+		return cadastroevento;
+	}
+	public void setCadastroevento(List<Cadastroevento> cadastroevento) {
+		this.cadastroevento = cadastroevento;
 	}
 	
 
