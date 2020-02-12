@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <section layout:fragment="conteudo principal">
-<form class="form-horizontal" method="POST" action="/eventos">
+<form id="enviarevento" class="form-horizontal" method="POST" action="/eventos">
 	
 		
 		<div class="card">
@@ -45,9 +45,12 @@
 				   
 			<label for="casadeshow" class="col-md-1"></label>
 				<div class="col-md-1">
-					<select class="form-control" name="nome">
-					 
-					</select>
+					 <select class="form-control" name="cadastrocasa">
+                         <option value=""> Selecione Casa de Show </option>
+                         <option th:each="casa : ${listacasas}"
+                            th:value="${casa}"
+                            th:utext="${casa.nome}"/>
+                  </select>
 				</div>
 				
 			<label for="genero" class="col-md-1"></label>
