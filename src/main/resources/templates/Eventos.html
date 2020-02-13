@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="LayoutPadrao">
+      layout:decorator="LayoutPadrao">
 <head>
 <meta charset="UTF-8">
 <title>Eventos</title>
@@ -11,8 +11,14 @@
 </head>
 <section layout:fragment="conteudo principal">
 <form id="enviarevento" class="form-horizontal" method="POST" action="/eventos" th:object="${cadastroevento}" >
-	
-		
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+	   <span>Evento salvo com sucesso</span>
+	</div>
+	<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+	  <div th:each="detailedError : ${#fields.detailedErrors()}">
+	   <span th:text="${detailedError.message}"></span>
+	   </div>
+	</div>			
 		<div class="card">
 			<div class="card-header">
 		       <div class="clearfix">
@@ -24,29 +30,33 @@
 			
 				<label for="nomeevento" class="col-md-2 col-form-label">Evento</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="nomeevento" name="nomeevento" >
+					<input type="text" class="form-control" id="nomeevento" th:field="*{nomeevento}" 
+					       th:classappend="${#fields.hasErrors('nomeevento')} ? is-invalid">
 				</div>
 			
 			
 				<label for="capacidade" class="col-md-2 col-form-label">Capacidade</label>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="capacidade" name="capacidade" />
+					<input type="text" class="form-control" id="capacidade" th:field="*{capacidade}"
+					         th:classappend="${#fields.hasErrors('capacidade')} ? is-invalid"/>
 				</div>
 			
 	
 				  <label  for="dataevento" class="col-sm-2 control-label" >Data</label>
 				   <div class="col-md-2"  >
-					<input type="text" class="form-control" id="dataevento" name="dataevento" />
+					<input type="text" class="form-control" id="dataevento" th:field="*{dataevento}" 
+					        th:classappend="${#fields.hasErrors('dataevento')} ? is-invalid"/>
 				   </div>
 				   
 				    <label  for="valor" class="col-sm-2 control-label" >Valor do Ingresso</label>
 				   <div class="col-md-2"  >
-					<input type="text" class="form-control" id="valor" name="valor" />
+					<input type="text" class="form-control" id="valor" th:field="*{valor}" 
+					        th:classappend="${#fields.hasErrors('valor')} ? is-invalid" />
 				   </div>
 				   
 			<label for="casadeshow" class="col-md-1"></label>
 				<div class="col-md-1">
-					 <select class="form-control" name="cadastrocasa">
+					 <select class="form-control" th:field="*{cadastrocasa}">
                          <option value=""> Selecione Casa de Show </option>
                          <option th:each="casa : ${listacasas}"
                             th:value="${casa.codigo}"
@@ -57,7 +67,7 @@
 			<label for="genero" class="col-md-1"></label>
 				<div class="col-md-1">
 					<select class="form-control" name="genero">
-						<option></option>
+						<option th:each=" estiloeventos : ${estiloevento}" th:value="${estiloeventos}" th:text="${estiloeventos.estilo}"></option>
 					</select>
 				</div>
 				  
@@ -83,21 +93,26 @@
 				</thead>
 				<thead>
 				
-				     <tr>
-				       <td class="text-center"></td>
-				       <td class="text-center"></td>
-				       <td class="text-center"></td>
-				       <td class="text-right"></td>
-				       <td class="text-center"></td>
-				        <td class="text-center"></td>
-				        <td class="text-center"></td>
+				     <tr th:each="eventos : ${evento}">
+				       <td class="text-center" th:text="${eventos.codigo}"></td>
+				       <td class="text-center" th:text="${eventos.nomeevento}"></td>
+				       <td class="text-center" th:text="${eventos.capacidade}"></td>
+				       <td class="text-center" th:text="${eventos.valor}"></td>
+				       <td class="text-center" th:text="${eventos.cadastrocasa.nome}"></td>
+				       
+				        <td class="text-center"><a class="btn btn-link btn-xs" th:href="@{/eventos/{codigo}(codigo=${eventos.codigo})}">Editar</a></td>
+				        
+				        <td class="text-center"><a class="btn btn-link btn-xs" data-toggle="modal" data-target="#ExclusaoModal"
+				            th:attr="data-codigo=${eventos.codigo}">Excluir</a></td>
 				     </tr>
 				     <tr>
-				        <td colspan="7" th:if="${#lists.isEmpty(cadastro)}">Nenhum Evento foi cadastrado</td>
+				        <td colspan="7" th:if="${#lists.isEmpty(evento)}">Nenhum Evento foi cadastrado</td>
 				     </tr>
 	          </thead>
 			</table>			 
 	 </div>
+	 <div layout:insert="ConfirmacaoExclusaoEvento"></div>
+	 
 	
 </section>
 

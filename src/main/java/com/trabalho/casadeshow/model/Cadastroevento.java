@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -23,20 +30,33 @@ public class Cadastroevento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	private String nomeevento;	
+	@NotEmpty(message = "O campo 'Evento' não pode estar vazio")
+	@Size(message = "O nome do evento não pode contar mais que 40 caracteres")
+	private String nomeevento;
+	
+	@NotNull(message = "O campo capacidade não pode estar vazio")
+	@DecimalMin(value = "1", message = "Capacidade minima é 1")
+	@NumberFormat(pattern = "#.###")
 	private int capacidade;
 	
 	@ManyToOne
 	@JoinColumn(name = "cadastrocasa_codigo", nullable=false)
+	@NotNull(message = "Selecione uma Casa de Show")
     private Cadastrocasa cadastrocasa;
 	
-	
+	@NotNull(message = "O campo 'Data' não pode estar vazio")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataevento;
 	
 	@NumberFormat(pattern = "#,###.00")
+	@NotNull(message = "O campo 'valor' não pode estar vazio ")
+	@DecimalMin(value = "0.01", message = "Valor não pode ser menor que 0.01")
+	@DecimalMax(value = "999999999999999", message = "Valor não pode ser maior que 999.999.999.999.999,00")
 	private BigDecimal valor;
+	
+	@Enumerated(EnumType.STRING)
+	private GeneroEvento genero;
 	
 	
 	//(Métodos Getters e Setters)
