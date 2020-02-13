@@ -25,15 +25,23 @@ public class EventoController {
 	 @RequestMapping(method = RequestMethod.GET)
 	 public ModelAndView eventos() {
 		 ModelAndView mv = new ModelAndView("Eventos");
+		 
+		 Cadastroevento cadastroevento = new Cadastroevento();
+		 mv.addObject("cadastroevento",cadastroevento);
+		 
 		 List<Cadastrocasa>todosCadastro = cadastrodeshow.findAll();
 		 mv.addObject("listacasas", todosCadastro);
 		 return mv;
 	 }
 	 
 	 @RequestMapping(method = RequestMethod.POST)
-	 public String salvar(Cadastroevento cadastroevento) {
+	 public ModelAndView salvar(Cadastroevento cadastroevento) {
+		 ModelAndView mv = new ModelAndView("Eventos");
 		 casaeventos.save(cadastroevento);
-		 return "Eventos";
+		 List<Cadastrocasa>todosCadastro = cadastrodeshow.findAll();
+		 mv.addObject("listacasas", todosCadastro);
+		 return mv;
+		 
 	 }
 	 
 

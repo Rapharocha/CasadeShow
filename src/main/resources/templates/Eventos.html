@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="LayoutPadrao">
+      layout:decorate="LayoutPadrao">
 <head>
 <meta charset="UTF-8">
 <title>Eventos</title>
 <link rel="stylesheet" th:ref="/css/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <section layout:fragment="conteudo principal">
-<form id="enviarevento" class="form-horizontal" method="POST" action="/eventos">
+<form id="enviarevento" class="form-horizontal" method="POST" action="/eventos" th:object="${cadastroevento}" >
 	
 		
 		<div class="card">
@@ -48,8 +49,8 @@
 					 <select class="form-control" name="cadastrocasa">
                          <option value=""> Selecione Casa de Show </option>
                          <option th:each="casa : ${listacasas}"
-                            th:value="${casa}"
-                            th:utext="${casa.nome}"/>
+                            th:value="${casa.codigo}"
+                            th:text="${casa.nome}"/>
                   </select>
 				</div>
 				
@@ -99,4 +100,8 @@
 	 </div>
 	
 </section>
+
+
+
+
 </html>
