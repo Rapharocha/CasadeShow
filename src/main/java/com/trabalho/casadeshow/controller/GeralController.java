@@ -15,11 +15,6 @@ public class GeralController {
 	 return "Cadastro";
  }	
  
- @RequestMapping(method = RequestMethod.GET, path ="/")
- public String Inicio() {
-	 
-	 return "Inicio";
-  } 
   
  @RequestMapping(method = RequestMethod.GET, path ="/historico")
  public String historico() {

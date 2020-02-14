@@ -66,7 +66,7 @@
 				
 			<label for="genero" class="col-md-1"></label>
 				<div class="col-md-1">
-					<select class="form-control" name="genero">
+					<select class="form-control" th:field="*{genero}">
 						<option th:each=" estiloeventos : ${estiloevento}" th:value="${estiloeventos}" th:text="${estiloeventos.estilo}"></option>
 					</select>
 				</div>
@@ -92,12 +92,11 @@
 					</tr>
 				</thead>
 				<thead>
-				
 				     <tr th:each="eventos : ${evento}">
 				       <td class="text-center" th:text="${eventos.codigo}"></td>
 				       <td class="text-center" th:text="${eventos.nomeevento}"></td>
 				       <td class="text-center" th:text="${eventos.capacidade}"></td>
-				       <td class="text-center" th:text="${eventos.valor}"></td>
+				       <td class="text-center" th:text="|R$ ${{eventos.valor}}|"></td>
 				       <td class="text-center" th:text="${eventos.cadastrocasa.nome}"></td>
 				       
 				        <td class="text-center"><a class="btn btn-link btn-xs" th:href="@{/eventos/{codigo}(codigo=${eventos.codigo})}">Editar</a></td>

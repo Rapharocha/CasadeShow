@@ -38,6 +38,8 @@ public class Cadastroevento {
 	@DecimalMin(value = "1", message = "Capacidade minima é 1")
 	@NumberFormat(pattern = "#.###")
 	private int capacidade;
+	private int ingresso;
+
 	
 	@ManyToOne
 	@JoinColumn(name = "cadastrocasa_codigo", nullable=false)
@@ -59,6 +61,12 @@ public class Cadastroevento {
 	private GeneroEvento genero;
 	
 	
+	public GeneroEvento getGenero() {
+		return genero;
+	}
+	public void setGenero(GeneroEvento genero) {
+		this.genero = genero;
+	}
 	//(Métodos Getters e Setters)
 	public Long getCodigo() {
 		return codigo;
@@ -99,7 +107,11 @@ public class Cadastroevento {
 	public void setCadastrocasa(Cadastrocasa cadastrocasa) {
 		this.cadastrocasa = cadastrocasa;
 	}
-	
-	
-	
+	public int getIngresso() {
+		return ingresso;
+	}
+	public void setIngresso(int ingresso) {
+		this.ingresso = ingresso;
+	}
+
 }

@@ -47,12 +47,14 @@ public class EventoController {
 	 public ModelAndView salvar(@Validated Cadastroevento cadastroevento, Errors errors) {
 		 ModelAndView mv = new ModelAndView("Eventos");
 		 if(errors.hasErrors()) {
+			 mv.addObject("estiloevento", GeneroEvento.values());
 			 List<Cadastroevento>cadastroeventos = casaeventos.findAll();
 			 mv.addObject("evento", cadastroeventos);
 			 List<Cadastrocasa>todosCadastro = cadastrodeshow.findAll();
 			 mv.addObject("listacasas", todosCadastro);
 			 return mv;
 		 }
+		 cadastroevento.setIngresso(cadastroevento.getCapacidade());
 		 casaeventos.save(cadastroevento);
 		 mv.addObject(new Cadastroevento());
 		 mv.addObject("mensagem","Evento salvo com sucesso");
@@ -60,6 +62,7 @@ public class EventoController {
 		 mv.addObject("evento", cadastroeventos);
 		 List<Cadastrocasa>todosCadastro = cadastrodeshow.findAll();
 		 mv.addObject("listacasas", todosCadastro);
+		 mv.addObject("estiloevento", GeneroEvento.values());
 		 return mv;	 
 	 }
 	 

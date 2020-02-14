@@ -24,5 +24,4 @@
 //		
 //		return new UserPrincipal(user);
 //	}
-//
 //}

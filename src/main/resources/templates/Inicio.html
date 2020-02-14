@@ -12,34 +12,26 @@
 <section layout:fragment="conteudo principal">
 
 
-
-<div class="card text-center">
-<div class="text-center ttinicio" >
-    <h1> Bem Vindo Usuário</h1>
-</div>
-  <div class="card-header">
+<form method="POST" action="/" th:object="${cadastroevento}">
+  <div class="card text-center">
+  <div class="text-center ttinicio" >
+      <h1> Bem Vindo Usuário</h1>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Show do Iron Maiden</h5>
-    <p class="card-text">Preço do Ingresso: R$300,00</p>
-    <p class="card-text">Data: 13/07/2020</p>
-    <p class="card-text">Local: Allianz Arena</p>
-    <p class="card-text">Ingressos Restantes:20000</p>
-    <a href="#" class="btn btn-primary">Comprar</a>
-  </div>
-</div> 
-
-<div class="card text-center">
-  <div class="card-header">
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Show do Gustavo Lima</h5>
-    <p class="card-text">Preço do Ingresso: R$150,00</p>
-    <p class="card-text">Data: 20/04/2020</p>
-    <p class="card-text">Local: Allianz Arena </p>
-    <p class="card-text">Ingressos Restantes:20000</p>
-    <a href="#" class="btn btn-primary">Comprar</a>
-  </div>
-</div> 
+    <div class="card-header">
+    </div>
+    <div class="list-group-item" th:each="compraeventos : ${evento}">
+      <h5 class="card-title" th:text="|Show do ${compraeventos.nomeevento}|" ></h5>
+      <p class="card-text" th:text="|Preço do Ingresso : ${{compraeventos.valor}}|"></p>
+      <p class="card-text" th:text="|Data do Evento: ${{compraeventos.dataevento}}|"></p>
+      <p class="card-text" th:text="|Local do Evento: ${compraeventos.cadastrocasa.nome}|"></p>
+      <p class="card-text" th:text="|Ingressos Restantes: ${compraeventos.ingresso}|"></p>
+      <a href="/" class="btn btn-primary">Comprar</a>
+    </div>
+    <div >
+      <h2 th:if="${#lists.isEmpty(evento)}">Nenhum evento cadastrado no momento. Volte em outra hora</h2>
+    </div>
+  </div> 
+  
+</form> 
 </section>
 </html>

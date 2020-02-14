@@ -3,15 +3,15 @@
 //import javax.persistence.Entity;
 //import javax.persistence.Id;
 //
-//@Entity
-//public class User {
+// @Entity
+// public class User {
 //
-//	@Id
+// @Id
 //	private long id;
 //	private String username;
 //	private String password;
 //	
-//	public long getId() {
+//public long getId() {
 //		return id;
 //	}
 //	public void setId(long id) {
