@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/"
-       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
 <meta charset="UTF-8">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -11,23 +11,22 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active"  >
+      <li class="nav-item active" sec:authorize="hasRole('PHome')" >
         <a class="nav-link" href="/">Home</a> 
       </li>
-      <li class="nav-item" > 
+      <li class="nav-item" sec:authorize="hasRole('PCasa')"> 
         <a class="nav-link" href="/casasdeshow">Casas de Show</a>
       </li>
-       <li class="nav-item" >
+       <li class="nav-item" sec:authorize="hasRole('PEvento')">
         <a class="nav-link" href="/eventos">Eventos</a>
       </li>
-      <li class="nav-item" >
+      <li class="nav-item" sec:authorize="hasRole('PHistorico')">
         <a class="nav-link" href="/historico">Histórico</a>
       </li>
     </ul>
     
     <form action="/logout" method="post" class="form-inline my-2 my-lg-0">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
-      
     </form>
     
   </div>

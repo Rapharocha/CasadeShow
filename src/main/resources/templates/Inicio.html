@@ -14,18 +14,19 @@
 
 <form method="POST" action="/" th:object="${cadastroevento}">
   <div class="card text-center">
+   <div class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
+	   <span th:text="${mensagem}"></span>
+	</div>
   <div class="text-center ttinicio" >
       <h1> Bem Vindo Usuário</h1>
   </div>
-    <div class="card-header">
-    </div>
     <div class="list-group-item" th:each="compraeventos : ${evento}">
       <h5 class="card-title" th:text="|Show do ${compraeventos.nomeevento}|" ></h5>
       <p class="card-text" th:text="|Preço do Ingresso : ${{compraeventos.valor}}|"></p>
       <p class="card-text" th:text="|Data do Evento: ${{compraeventos.dataevento}}|"></p>
       <p class="card-text" th:text="|Local do Evento: ${compraeventos.cadastrocasa.nome}|"></p>
       <p class="card-text" th:text="|Ingressos Restantes: ${compraeventos.ingresso}|"></p>
-      <a href="/" class="btn btn-primary">Comprar</a>
+      <a class="btn btn-primary" th:href="@{/{codigo}(codigo=${compraeventos.codigo})}">Comprar</a>
     </div>
     <div >
       <h2 th:if="${#lists.isEmpty(evento)}">Nenhum evento cadastrado no momento. Volte em outra hora</h2>

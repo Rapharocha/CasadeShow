@@ -57,6 +57,7 @@ public class Cadastroevento {
 	@DecimalMax(value = "999999999999999", message = "Valor não pode ser maior que 999.999.999.999.999,00")
 	private BigDecimal valor;
 	
+	@NotNull(message = "Selecione um Gênero")
 	@Enumerated(EnumType.STRING)
 	private GeneroEvento genero;
 	

@@ -57,7 +57,7 @@
 			<label for="casadeshow" class="col-md-1"></label>
 				<div class="col-md-1">
 					 <select class="form-control" th:field="*{cadastrocasa}">
-                         <option value=""> Selecione Casa de Show </option>
+                         <option value="">Casa de Show</option>
                          <option th:each="casa : ${listacasas}"
                             th:value="${casa.codigo}"
                             th:text="${casa.nome}"/>
@@ -67,6 +67,7 @@
 			<label for="genero" class="col-md-1"></label>
 				<div class="col-md-1">
 					<select class="form-control" th:field="*{genero}">
+					    <option value="">Gênero</option>
 						<option th:each=" estiloeventos : ${estiloevento}" th:value="${estiloeventos}" th:text="${estiloeventos.estilo}"></option>
 					</select>
 				</div>

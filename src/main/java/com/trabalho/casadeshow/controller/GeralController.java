@@ -12,10 +12,9 @@ public class GeralController {
  @RequestMapping(method = RequestMethod.GET, path = "/login")	
  public String login() {
 	 
-	 return "Cadastro";
+	 return "Login";
  }	
  
-  
  @RequestMapping(method = RequestMethod.GET, path ="/historico")
  public String historico() {
 	 return "Historico";
