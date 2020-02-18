@@ -31,7 +31,7 @@ public class Cadastroevento {
 	private Long codigo;
 	
 	@NotEmpty(message = "O campo 'Evento' não pode estar vazio")
-	@Size(message = "O nome do evento não pode contar mais que 40 caracteres")
+	@Size(max = 40 ,message = "O nome do evento não pode contar mais que 40 caracteres")
 	private String nomeevento;
 	
 	@NotNull(message = "O campo capacidade não pode estar vazio")
@@ -42,7 +42,7 @@ public class Cadastroevento {
 
 	
 	@ManyToOne
-	@JoinColumn(name = "cadastrocasa_codigo", nullable=false)
+	@JoinColumn(name = "cadastrocasa_codigo")
 	@NotNull(message = "Selecione uma Casa de Show")
     private Cadastrocasa cadastrocasa;
 	

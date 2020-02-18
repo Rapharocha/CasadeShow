@@ -10,15 +10,22 @@
 <div class="card container-fluid col-sm-4">
 <div class="card-body ">
  
- <form action="/cadastro" method="post">
+ <form action="/cadastro" method="post" th:object="${cadastrologin}">
+ <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+   <div th:each="detailedError : ${#fields.detailedErrors()}">
+    <span th:text="${detailedError.message}"></span>
+   </div>
+ </div>
   <div class="form-group">
     <label for="Nome">Nome</label>
-    <input type="text"name="login" class="form-control col-sm-4" placeholder="Usuário"> 
+    <input type="text" th:field="*{username}" class="form-control col-sm-4" placeholder="Usuário"
+           th:classappend="${#fields.hasErrors('username')} ? is-invalid"> 
   </div>
   
   <div class="form-group">
     <label for="Senha">Senha</label>
-    <input type="password" name="senha" class="form-control col-sm-4" placeholder="Senha">
+    <input type="password" th:field="*{password}" class="form-control col-sm-4" placeholder="Senha"
+            th:classappend="${#fields.hasErrors('password')} ? is-invalid">
   </div>
   
    <button type="submit" class="btn btn-primary">Cadastrar</button>

@@ -57,7 +57,7 @@ public class Cadastrocasa {
 	private String endereco;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="cadastrocasa", orphanRemoval=true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="cadastrocasa")
 	private List<Cadastroevento> cadastroevento;
 	
 	public Long getCodigo() {
