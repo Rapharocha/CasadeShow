@@ -17,13 +17,20 @@
    </div>
  </div>
   <div class="form-group">
-    <label for="Nome">Nome</label>
+    <label for="Username">Username</label>
     <input type="text" th:field="*{username}" class="form-control col-sm-4" placeholder="Usuário"
            th:classappend="${#fields.hasErrors('username')} ? is-invalid"> 
   </div>
   
+   <div class="form-group">
+    <label for="Nome">Nome</label>
+    <input type="text" th:field="*{nome}" class="form-control col-sm-4" placeholder="Usuário"
+           th:classappend="${#fields.hasErrors('nome')} ? is-invalid"> 
+  </div>
+  
+  
   <div class="form-group">
-    <label for="Senha">Senha</label>
+    <label for="Password">Senha</label>
     <input type="password" th:field="*{password}" class="form-control col-sm-4" placeholder="Senha"
             th:classappend="${#fields.hasErrors('password')} ? is-invalid">
   </div>

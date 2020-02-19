@@ -1,19 +1,26 @@
 package com.trabalho.casadeshow.config;
 
 
+
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.trabalho.casadeshow.model.Cadastrologin;
-import com.trabalho.casadeshow.model.CadastrologinPrincipal;
+//import com.trabalho.casadeshow.model.CadastrologinPrincipal;
 import com.trabalho.casadeshow.repository.UsuarioRepository;
 
 @Service
+@Transactional
 public class ImplementsUserDetailsService implements UserDetailsService{
 
+	
 	@Autowired
     private UsuarioRepository ur;
 	
@@ -21,13 +28,16 @@ public class ImplementsUserDetailsService implements UserDetailsService{
       public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		  Cadastrologin usuario = ur.findByUsername(username);
+		  
 		
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuário não encontrado");
 		}
 		
-     	return new CadastrologinPrincipal(usuario);
+     	return new User(usuario.getUsername(),usuario.getPassword(),true,true,true,true,usuario.getAuthorities());
 	}
+
+	
 
 
 }

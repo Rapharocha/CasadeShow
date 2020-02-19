@@ -5,12 +5,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -19,16 +22,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.
 		   csrf().disable().
 		    authorizeRequests()
-		    .antMatchers("/").permitAll()
-		    .antMatchers("/casasdeshow").permitAll()
-		    .antMatchers("/eventos").permitAll()
-		    .antMatchers("/historico").permitAll()
-		    .antMatchers("/cadastro").permitAll()
+		    .antMatchers("/").hasRole("ADMIN")
+		    .antMatchers("/casasdeshow").hasRole("ADMIN")
+		    .antMatchers("/eventos").hasRole("ADMIN")
+		    .antMatchers("/historico").hasRole("ADMIN")
+		    .antMatchers("/cadastro").hasRole("ADMIN")
 		    .anyRequest()
 		    .authenticated()
 		.and()
@@ -44,6 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity config) throws Exception{
 		config.ignoring().antMatchers("/css/**").antMatchers("/img/**").antMatchers("/js/**");
 	}
+	
+
 	
 	@Bean
 	public AuthenticationProvider authProvider() {

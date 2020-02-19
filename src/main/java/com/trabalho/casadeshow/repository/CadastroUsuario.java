@@ -6,3 +6,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CadastroUsuario extends JpaRepository<Cadastrologin,String> {
 
 }
+
