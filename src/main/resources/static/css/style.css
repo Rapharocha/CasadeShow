@@ -11,3 +11,16 @@
 	margin-left:10px;
 	margin-right:10px;
 }
+
+.foto{
+	    width: 463px;
+}
+
+.esquerda{
+	width:20%;
+	float:left;
+}
+.direita{
+	width:80%;
+	float:left;
+}

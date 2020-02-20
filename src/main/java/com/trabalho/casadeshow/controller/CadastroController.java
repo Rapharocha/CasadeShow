@@ -1,5 +1,9 @@
 package com.trabalho.casadeshow.controller;
 
+
+
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -7,19 +11,21 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.trabalho.casadeshow.model.Cadastrologin;
+import com.trabalho.casadeshow.model.Role;
 import com.trabalho.casadeshow.repository.CadastroUsuario;
+import com.trabalho.casadeshow.repository.RoleRepository;
 
 
 @Controller
-@RequestMapping("/cadastro")
+@RequestMapping("/cadastro") 
 public class CadastroController {
 
 	 @Autowired
 	 private CadastroUsuario user;
-	
+	 @Autowired
+	 private RoleRepository role;
+	 
 	 @RequestMapping	
 	 public ModelAndView cadastro() {
 		 ModelAndView mv = new ModelAndView("Cadastrar");
@@ -35,9 +41,16 @@ public class CadastroController {
 			 
 			 return mv1;
 		 }
-		 
-		 user.save(cadastrologin);
-		 
+		 if(cadastrologin.getUsername().equals("ADMIN")) {
+			 
+			 Role roleNome = role.findByNomeRole("ROLE_ADMIN");
+			 cadastrologin.setRoles(Arrays.asList(roleNome));
+			 user.save(cadastrologin);
+		 } else {
+			 Role roleNome = role.findByNomeRole("ROLE_USER");
+			 cadastrologin.setRoles(Arrays.asList(roleNome));
+			 user.save(cadastrologin);
+		 }
 		 return mv;
 	 }
 }

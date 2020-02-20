@@ -16,6 +16,12 @@
     <span th:text="${detailedError.message}"></span>
    </div>
  </div>
+ 
+  <div class="text-center">
+  <h3>Login</h3>
+  </Div>
+  
+  
   <div class="form-group">
     <label for="Username">Username</label>
     <input type="text" th:field="*{username}" class="form-control col-sm-4" placeholder="Usuário"
@@ -36,6 +42,8 @@
   </div>
   
    <button type="submit" class="btn btn-primary">Cadastrar</button>
+   
+   <a type="submit" class="btn btn-primary" href="/login">Voltar</a>
  </form>
  </div>
 </div>

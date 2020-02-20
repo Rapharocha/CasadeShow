@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorator="LayoutPadrao">
 <head>
 <meta charset="UTF-8">
 <title>Histórico</title>
-<link rel="stylesheet" th:ref="/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <section layout:fragment="conteudo principal">
-
+<form >
+  <div class="card text-center">
+  <div class="text-center thistorico" >
+  </div>
+    <div class="list-group-item">
+      <div class="esquerda"><img src="/img/HISTORICO.jpg" class="foto"></div>
+      <div class=" direita" > 
+         <h5 class="card-title">Histórico do <span sec:authentication="principal.username"></span></h5>
+         <p class="card-text">Show do Gustavo Lima</p>
+         <p class="card-text">Data</p>
+         <p class="card-text">Quantidade de ingressos comprados</p>
+         <p class="card-text">total da compra</p>
+      </div>
+    </div>
+  </div> 
+  
+</form> 
 </section>
 </html>

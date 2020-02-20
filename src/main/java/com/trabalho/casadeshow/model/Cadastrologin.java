@@ -4,16 +4,12 @@ package com.trabalho.casadeshow.model;
 
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +19,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Cadastrologin implements UserDetails {
     
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@NotEmpty(message = "Username obrigatório")
 	@Size(max = 40, message = "O username  não pode contar mais que 40 caracteres.")
@@ -40,16 +41,10 @@ public class Cadastrologin implements UserDetails {
 	referencedColumnName="username"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="nomeRole"))
 	private List<Role>roles;
 	
-//	public String getUsername() {
-//		return username;
-//	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-//	public String getPassword() {
-//		return password;
-//	}
 	public void setPassword(String password) {
 		this.password = password;
 	}

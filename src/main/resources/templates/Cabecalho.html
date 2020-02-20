@@ -11,7 +11,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" sec:authorize="hasRole('ADMIN')" >
+      <li class="nav-item active" sec:authorize="hasAnyRole('ADMIN','USER')" >
         <a class="nav-link" href="/">Home</a> 
       </li>
       <li class="nav-item" sec:authorize="hasRole('ADMIN')"> 
@@ -20,7 +20,7 @@
        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
         <a class="nav-link" href="/eventos">Eventos</a>
       </li>
-      <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+      <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','USER')">
         <a class="nav-link" href="/historico">Histórico</a>
       </li>
     </ul>
