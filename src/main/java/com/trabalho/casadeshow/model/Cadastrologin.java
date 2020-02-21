@@ -40,11 +40,11 @@ public class Cadastrologin implements UserDetails {
 	@JoinTable( name = "usuarios_roles", joinColumns = @JoinColumn(name = "cadastrologin_id",
 	referencedColumnName="username"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="nomeRole"))
 	private List<Role>roles;
+    
 	
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -102,6 +102,10 @@ public class Cadastrologin implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	
+
+
 
 	
 }

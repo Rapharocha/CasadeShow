@@ -42,9 +42,7 @@ public class CadastroController {
 			 return mv1;
 		 }
 		 
-		 Cadastrologin cadastrologin1 = user.findByUsername(cadastrologin.getUsername());
-		 if(cadastrologin.getUsername().equals(cadastrologin1.getUsername())) {
-			 System.out.println(cadastrologin);
+		 if(user.existsById(cadastrologin.getUsername())) {
 			 mv1.addObject("mensagem", "Já existe username");
 			 return mv1;
 		 }

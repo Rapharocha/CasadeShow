@@ -10,4 +10,6 @@ import com.trabalho.casadeshow.model.Cadastrologin;
 public interface UsuarioRepository extends JpaRepository<Cadastrologin,String> {
 
 	Cadastrologin findByUsername(String username);
+
+	
 }

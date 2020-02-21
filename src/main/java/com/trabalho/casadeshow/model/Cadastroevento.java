@@ -2,7 +2,6 @@ package com.trabalho.casadeshow.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -61,7 +60,6 @@ public class Cadastroevento {
 	@Enumerated(EnumType.STRING)
 	private GeneroEvento genero;
 	
-	
 	public GeneroEvento getGenero() {
 		return genero;
 	}
@@ -114,5 +112,6 @@ public class Cadastroevento {
 	public void setIngresso(int ingresso) {
 		this.ingresso = ingresso;
 	}
+	
 
 }

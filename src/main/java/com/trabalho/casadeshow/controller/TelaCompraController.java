@@ -1,5 +1,6 @@
 package com.trabalho.casadeshow.controller;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trabalho.casadeshow.model.Cadastroevento;
+import com.trabalho.casadeshow.model.Cadastrologin;
 import com.trabalho.casadeshow.repository.Cadastrocasaeventos;
+
 
 @Controller
 @RequestMapping("/")
@@ -31,10 +34,10 @@ public class TelaCompraController {
 		 
 	}
 	@RequestMapping("{codigo}")
-	public String comprar(@PathVariable Long codigo, RedirectAttributes attributes) {
+	public String comprar(@PathVariable Long codigo, RedirectAttributes attributes,Cadastrologin usuario,Cadastroevento evento) {
 		ModelAndView mv = new ModelAndView("Inicio");
-        
 		Optional<Cadastroevento>Eventostodos = casaeventos.findById(codigo);
+		
 		int menosum = 1;
 		if(Eventostodos.get().getIngresso()>0) {
 			Eventostodos.get().setIngresso(Eventostodos.get().getIngresso()-menosum);
@@ -44,8 +47,5 @@ public class TelaCompraController {
 			attributes.addFlashAttribute("mensagem","ESGOTADO!!!");
 		}
 		return "redirect:/";
-		
-	}
-
-	
+	}	
 }

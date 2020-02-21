@@ -13,32 +13,3 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 	
 	
 });
-//
-//
-//$(document).ready(function(){
-//  $("#enviarevento").submit(function(){
-//	  
-//	  var form = new FormData(this);
-//	  
-////	  var formData1 = JSON.parse($("#enviarevento").serializeArray());
-//	  var formData2 = JSON.stringify(jQuery('#enviarevento').serializeArray()); // store json string
-//	  var formData3 = JSON.parse(JSON.stringify(jQuery('#enviarevento').serializeArray()))
-//			  
-////	  console.log(formData1);
-//	  console.log(formData2);
-//	  console.log(formData3);
-//	  
-//	  $.ajax({
-//	        url : "/eventos",
-//	        type: "POST",
-//	        data : form,
-//			contentType: false,
-//			cache: false,
-//			processData:false
-//	    }).done(function(response){ //
-//	    	console.log(response)
-//	        $("#server-results").html(response);
-//	    });
-//    alert(form);
-//  });
-//});
