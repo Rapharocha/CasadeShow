@@ -17,6 +17,8 @@ public class GeralController {
  
  @RequestMapping(method = RequestMethod.GET, path ="/historico")
  public String historico() {
+	 
+	 
 	 return "Historico";
  }
 }

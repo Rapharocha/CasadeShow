@@ -27,11 +27,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.
 		   csrf().disable().
 		    authorizeRequests()
+		    
 		    .antMatchers("/").hasAnyRole("ADMIN","USER")
+		    .antMatchers("/h2").permitAll()
+		    .antMatchers("/console/**").permitAll()
 		    .antMatchers("/casasdeshow").hasRole("ADMIN")
 		    .antMatchers("/eventos").hasRole("ADMIN")
 		    .antMatchers("/historico").hasAnyRole("ADMIN","USER")
 		    .antMatchers("/cadastro").permitAll()
+		    
 		    .anyRequest()
 		    .authenticated()
 		.and()
@@ -45,7 +49,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	public void configure(WebSecurity config) throws Exception{
-		config.ignoring().antMatchers("/css/**").antMatchers("/img/**").antMatchers("/js/**");
+//		config.ignoring().antMatchers("/css/**").antMatchers("/img/**").antMatchers("/js/**");
+		config.ignoring()
+        .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/console/**");
 	}
 	
 

@@ -17,6 +17,10 @@
    </div>
  </div>
  
+ <div  class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
+    <span>Username já exite.</span>
+ </div>
+ 
   <div class="text-center">
   <h3>Login</h3>
   </Div>

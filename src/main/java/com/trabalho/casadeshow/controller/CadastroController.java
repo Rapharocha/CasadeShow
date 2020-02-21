@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.trabalho.casadeshow.model.Cadastrologin;
 import com.trabalho.casadeshow.model.Role;
-import com.trabalho.casadeshow.repository.CadastroUsuario;
 import com.trabalho.casadeshow.repository.RoleRepository;
+import com.trabalho.casadeshow.repository.UsuarioRepository;
 
 
 @Controller
@@ -22,7 +22,7 @@ import com.trabalho.casadeshow.repository.RoleRepository;
 public class CadastroController {
 
 	 @Autowired
-	 private CadastroUsuario user;
+	 private UsuarioRepository user;
 	 @Autowired
 	 private RoleRepository role;
 	 
@@ -41,6 +41,14 @@ public class CadastroController {
 			 
 			 return mv1;
 		 }
+		 
+		 Cadastrologin cadastrologin1 = user.findByUsername(cadastrologin.getUsername());
+		 if(cadastrologin.getUsername().equals(cadastrologin1.getUsername())) {
+			 System.out.println(cadastrologin);
+			 mv1.addObject("mensagem", "Já existe username");
+			 return mv1;
+		 }
+		 
 		 if(cadastrologin.getUsername().equals("ADMIN")) {
 			 
 			 Role roleNome = role.findByNomeRole("ROLE_ADMIN");
