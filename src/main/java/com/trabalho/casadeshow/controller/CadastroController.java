@@ -47,7 +47,7 @@ public class CadastroController {
 			 return mv1;
 		 }
 		 
-		 if(cadastrologin.getUsername().equals("ADMIN")) {
+		 if(cadastrologin.getUsername().equals("ADMIN") || cadastrologin.getUsername().equals("Admin") || cadastrologin.getUsername().equals("admin")) {
 			 
 			 Role roleNome = role.findByNomeRole("ROLE_ADMIN");
 			 cadastrologin.setRoles(Arrays.asList(roleNome));
