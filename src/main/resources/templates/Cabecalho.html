@@ -3,14 +3,16 @@
        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
 <meta charset="UTF-8">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Gerenciador de Eventos</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+     <li class="nav-item active" sec:authorize="hasAnyRole('ADMIN','USER')" >
+        <a class="nav-link" href="/">Gerenciamento de Eventos</a> 
+      </li>
       <li class="nav-item active" sec:authorize="hasAnyRole('ADMIN','USER')" >
         <a class="nav-link" href="/">Home</a> 
       </li>
@@ -21,7 +23,7 @@
         <a class="nav-link" href="/eventos">Eventos</a>
       </li>
       <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','USER')">
-        <a class="nav-link" href="/historico">Histórico</a>
+        <a class="nav-link" th:href="@{/historico/{username}(username = ${#authentication.principal.username})}">Histórico</a>
       </li>
     </ul>
     

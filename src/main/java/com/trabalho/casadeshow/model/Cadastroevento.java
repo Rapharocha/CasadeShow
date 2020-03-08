@@ -38,7 +38,6 @@ public class Cadastroevento {
 	@NumberFormat(pattern = "#.###")
 	private int capacidade;
 	private int ingresso;
-
 	
 	@ManyToOne
 	@JoinColumn(name = "cadastrocasa_codigo")
@@ -54,7 +53,7 @@ public class Cadastroevento {
 	@NotNull(message = "O campo 'valor' não pode estar vazio ")
 	@DecimalMin(value = "0.01", message = "Valor não pode ser menor que 0.01")
 	@DecimalMax(value = "999999999999999", message = "Valor não pode ser maior que 999.999.999.999.999,00")
-	private BigDecimal valor;
+	private Double valor;
 	
 	@NotNull(message = "Selecione um Gênero")
 	@Enumerated(EnumType.STRING)
@@ -93,12 +92,7 @@ public class Cadastroevento {
 	public void setDataevento(Date dataevento) {
 		this.dataevento = dataevento;
 	}
-	public BigDecimal getValor() {
-		return valor;
-	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
+
 
 	public Cadastrocasa getCadastrocasa() {
 		return cadastrocasa;
@@ -111,6 +105,12 @@ public class Cadastroevento {
 	}
 	public void setIngresso(int ingresso) {
 		this.ingresso = ingresso;
+	}
+	public Double getValor() {
+		return valor;
+	}
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 	
 

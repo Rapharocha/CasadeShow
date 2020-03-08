@@ -1,6 +1,7 @@
 package com.trabalho.casadeshow.controller;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trabalho.casadeshow.model.Cadastroevento;
 import com.trabalho.casadeshow.model.Cadastrologin;
+import com.trabalho.casadeshow.model.Vendas;
 import com.trabalho.casadeshow.repository.Cadastrocasaeventos;
+import com.trabalho.casadeshow.repository.VendasRepository;
 
 
 @Controller
@@ -22,6 +25,9 @@ public class TelaCompraController {
 	
 	@Autowired
 	 private Cadastrocasaeventos casaeventos;
+	
+	@Autowired
+	private VendasRepository vendasRepository;
 	
 	@RequestMapping
 	public ModelAndView inicio() {
@@ -33,8 +39,8 @@ public class TelaCompraController {
 		 return mv;
 		 
 	}
-	@RequestMapping("{codigo}")
-	public String comprar(@PathVariable Long codigo, RedirectAttributes attributes,Cadastrologin usuario,Cadastroevento evento) {
+	@RequestMapping("{codigo}/{username}")
+	public String comprar(@PathVariable Long codigo, RedirectAttributes attributes,@PathVariable String username) {
 		ModelAndView mv = new ModelAndView("Inicio");
 		Optional<Cadastroevento>Eventostodos = casaeventos.findById(codigo);
 		
@@ -46,6 +52,24 @@ public class TelaCompraController {
 		else {
 			attributes.addFlashAttribute("mensagem","ESGOTADO!!!");
 		}
+		
+		Vendas vendas = vendasRepository.findByUsuarioAndEventos(username, codigo);
+		if(vendas == null) {
+			Vendas salvarvendas = new Vendas();
+			salvarvendas.setIngressosComprados(1);
+			salvarvendas.setValorTotal(Eventostodos.get().getValor());
+			Cadastrologin cadastrologin = new Cadastrologin();
+			cadastrologin.setUsername(username);
+			salvarvendas.setUsuario(cadastrologin);
+			salvarvendas.setEvento(Eventostodos.get());
+			vendasRepository.save(salvarvendas);
+		}else {
+			vendas.setIngressosComprados(vendas.getIngressosComprados()+1);
+			vendas.setValorTotal(Eventostodos.get().getValor() * vendas.getIngressosComprados());
+			vendasRepository.save(vendas);
+		}
+		
+		
 		return "redirect:/";
 	}	
 }

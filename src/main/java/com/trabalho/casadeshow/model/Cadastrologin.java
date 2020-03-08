@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -40,6 +41,9 @@ public class Cadastrologin implements UserDetails {
 	@JoinTable( name = "usuarios_roles", joinColumns = @JoinColumn(name = "cadastrologin_id",
 	referencedColumnName="username"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="nomeRole"))
 	private List<Role>roles;
+	
+	@OneToMany
+	private List<Vendas> vendas;
     
 	
 	public void setUsername(String username) {

@@ -23,11 +23,11 @@
   </div>
     <div class="list-group-item" th:each="compraeventos : ${evento}">
       <h5 class="card-title" th:text="|Show do ${compraeventos.nomeevento}|" ></h5>
-      <p class="card-text" th:text="|Preço do Ingresso : ${{compraeventos.valor}}|"></p>
+      <p class="card-text" th:text="|Preço do Ingresso : R$ ${{compraeventos.valor}}|"></p>
       <p class="card-text" th:text="|Data do Evento: ${{compraeventos.dataevento}}|"></p>
       <p class="card-text" th:text="|Local do Evento: ${compraeventos.cadastrocasa.nome}|"></p>
       <p class="card-text" th:text="|Ingressos Restantes: ${compraeventos.ingresso}|"></p>
-      <a class="btn btn-primary" th:href="@{/{codigo}(codigo=${compraeventos.codigo})}">Comprar</a>
+      <a class="btn btn-primary" th:href="@{/{codigo}/{username}(codigo=${compraeventos.codigo},username=${#authentication.principal.username})}">Comprar</a>
     </div>
     <div >
       <h2 th:if="${#lists.isEmpty(evento)}">Nenhum evento cadastrado no momento. Volte em outra hora</h2>
